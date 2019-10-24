@@ -1,0 +1,52 @@
+<?php
+/*
+Plugin Name: Pod Template
+PluginURI: https://gist.github.com/Shelob9/7540721
+Author: Josh Pollock
+AuthorURI: http://JoshPress.net
+*/
+function slug_pods_content_filter($content) {
+	if ( get_post_type() == 'tool' ) {
+  		$obj = pods('tool', get_the_id() );
+		return $obj->template('tool').$content;
+ 	}
+	if ( get_post_type() == 'tooltype' ) {
+  		$obj = pods('tooltype', get_the_id() );
+		return $obj->template('tooltype').$content;
+ 	}
+	if ( get_post_type() == 'tool-objective' ) {
+  		$obj = pods('tool-objective', get_the_id() );
+		return $obj->template('tool-objective').$content;
+ 	}
+	if ( get_post_type() == 'support-org' ) {
+  		$obj = pods('support-org', get_the_id() );
+		return $obj->template('support-org').$content;
+ 	}
+	if ( get_post_type() == 'support-org-type' ) {
+  		$obj = pods('support-org-type', get_the_id() );
+		return $obj->template('support-org-type').$content;
+ 	}
+	
+	if ( get_post_type() == 'de-post' ) {
+  		$obj = pods('de-post', get_the_id() );
+		return $obj->template('depost').$content;
+ 	}
+	
+	if ( get_post_type() == 'campaign' ) {
+  		$obj = pods('campaign', get_the_id() );
+		return $obj->template('campaign').$content;
+ 	}
+	
+	if ( get_post_type() == 'activity-report' ) {
+  		$obj = pods('activity-report', get_the_id() );
+		return $obj->template('activity-report').$content;
+ 	}
+	
+	if ( get_post_type() == 'cso-case-study' ) {
+  		$obj = pods('cso-case-study', get_the_id() );
+		return $obj->template('cso-case-study').$content;
+ 	}
+ 	return $content;
+}
+add_filter( 'the_content', 'slug_pods_content_filter' );
+?>
